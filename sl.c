@@ -1,10 +1,17 @@
 /*========================================
- *    sl.c: SL version 5.03
- *        Copyright 1993,1998,2014-2015
+ *    sl.c: SL version 5.04
+ *        Copyright 1993,1998,2014-2015,2019
  *                  Toyoda Masashi
  *                  (mtoyoda@acm.org)
- *        Last Modified: 2014/06/03
+ *        Last Modified: 2019/03/19
  *========================================
+ */
+/* sl version 5.04 : by eyJhb 2019-03-19
+ * - Merged pull request from EverNine allowing to specify the number of cars
+ * - Merged pull request from ddugovic which adds 
+ *      `-e` for `ctrl+c` to work
+ *      `-d` to enable disco mode
+ *      `-w` making the locomotive go faster
  */
 /* sl version 5.03 : Fix some more compiler warnings.                        */
 /*                                              by Ryan Jacobs    2015/01/19 */
@@ -42,6 +49,7 @@
 #include <curses.h>
 #include <limits.h>
 #include <signal.h>
+#include <stdlib.h>
 #include <unistd.h>
 #include "sl.h"
 
@@ -134,7 +142,7 @@ int main(int argc, char *argv[])
     mvcur(0, COLS - 1, LINES - 1, 0);
     endwin();
 
-    return 0;
+    return(EXIT_FAILURE);
 }
 
 
