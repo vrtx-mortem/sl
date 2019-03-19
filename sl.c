@@ -53,6 +53,8 @@
 #include <unistd.h>
 #include "sl.h"
 
+#define VERSION "5.04"
+
 void add_smoke(int y, int x);
 void add_man(int y, int x);
 int add_C51(int x);
@@ -92,6 +94,10 @@ void option(char *str)
             case 'F': FLY      = 1; break;
             case 'l': LOGO     = 1; break;
             case 'w': WIND     = 200; break;
+            case 'v': 
+              printf("Version: %s, last updated: 2019-03-19\n", VERSION);
+              exit(0);
+              break;
             default:
               if (isdigit(*str))
                   NUMBER = (NUMBER < 0 ? 0 : NUMBER*10) + *str - '0';
