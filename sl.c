@@ -1,12 +1,14 @@
 /*========================================
- *    sl.c: SL version 5.04
+ *    sl.c: SL version 5.05
  *        Copyright 1993,1998,2014-2015,2019
  *                  Toyoda Masashi
  *                  (mtoyoda@acm.org)
  *        Last Modified: 2019/03/19
  *========================================
  */
-/* sl version 5.04 : by eyJhb 2019-03-19
+/* sl version 5.05 : by eyJhb 2019-08-14
+ * - Merged pull request from cosmo-ray adding orange TGV (-G)
+ * sl version 5.04 : by eyJhb 2019-03-19
  * - Merged pull request from EverNine allowing to specify the number of cars
  * - Merged pull request from ddugovic which adds 
  *      `-e` for `ctrl+c` to work
