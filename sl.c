@@ -146,7 +146,7 @@ int main(int argc, char *argv[])
         init_pair(2, COLOR_GREEN, DEFAULT_COLOR);
         init_pair(1, COLOR_CYAN, DEFAULT_COLOR);
     }
-    if (SIGNAL) signal(SIGINT, SIG_IGN);
+    if (!SIGNAL) signal(SIGINT, SIG_IGN);
     noecho();
     curs_set(0);
     nodelay(stdscr, TRUE);
