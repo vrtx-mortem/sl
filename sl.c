@@ -76,6 +76,8 @@ int LOGO      = 0;
 int WIND      = 0;
 int TGV       = 0;
 
+int DEFAULT_COLOR = -1;
+
 int my_mvaddstr(int y, int x, char *str)
 {
     for ( ; x < 0; ++x, ++str)
@@ -112,6 +114,20 @@ void option(char *str)
     }
 }
 
+bool ncurses_prepare_colors(void) {
+    if (!has_colors()) {
+        return false;
+    }
+
+    start_color();
+    if( use_default_colors() != OK ) {
+        DEFAULT_COLOR = COLOR_BLACK;
+    } else {
+        assume_default_colors(DEFAULT_COLOR, DEFAULT_COLOR);
+    }
+    return true;
+}
+
 int main(int argc, char *argv[])
 {
     int x, i;
@@ -124,11 +140,11 @@ int main(int argc, char *argv[])
     }
     initscr();
     if (DISCO == 1) {
-        start_color();
-        init_pair(4, COLOR_RED, COLOR_BLACK);
-        init_pair(3, COLOR_YELLOW, COLOR_BLACK);
-        init_pair(2, COLOR_GREEN, COLOR_BLACK);
-        init_pair(1, COLOR_CYAN, COLOR_BLACK);
+        ncurses_prepare_colors();
+        init_pair(4, COLOR_RED, DEFAULT_COLOR);
+        init_pair(3, COLOR_YELLOW, DEFAULT_COLOR);
+        init_pair(2, COLOR_GREEN, DEFAULT_COLOR);
+        init_pair(1, COLOR_CYAN, DEFAULT_COLOR);
     }
     if (SIGNAL) signal(SIGINT, SIG_IGN);
     noecho();
@@ -140,16 +156,16 @@ int main(int argc, char *argv[])
  *   first Non prototype TGV was orange, first 1 was red
  */
     if (TGV == 1) {
-	if (has_colors()) {
-	    start_color();
-	    init_pair(1, COLOR_WHITE, COLOR_BLACK);
-	    init_pair(2, COLOR_YELLOW, COLOR_BLACK);
-	    base_usleep /= 2;
-	    if (WIND)
-		WIND = 150;
-	} else {
-	    TGV = 0;
-	}
+        if (ncurses_prepare_colors()) {
+            init_pair(1, COLOR_WHITE, DEFAULT_COLOR);
+            init_pair(2, COLOR_YELLOW, DEFAULT_COLOR);
+            base_usleep /= 2;
+            if (WIND) {
+                WIND = 150;
+            }
+        } else {
+            TGV = 0;
+        }
     }
 
     for (x = COLS - 1; ; --x) {
