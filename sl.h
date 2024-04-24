@@ -8,7 +8,6 @@
  */
 
 #define TGVHEIGHT	8
-#define TGVLENGTH	114
 #define TGVPATTERNS	2
 
 #define TGVSTR0  "                             ______________   /          "

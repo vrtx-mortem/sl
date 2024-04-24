@@ -140,16 +140,17 @@ int main(int argc, char *argv[])
  *   first Non prototype TGV was orange, first 1 was red
  */
     if (TGV == 1) {
-	if (has_colors()) {
-	    start_color();
-	    init_pair(1, COLOR_WHITE, COLOR_BLACK);
-	    init_pair(2, COLOR_YELLOW, COLOR_BLACK);
-	    base_usleep /= 2;
-	    if (WIND)
-		WIND = 150;
-	} else {
-	    TGV = 0;
-	}
+      if (has_colors()) {
+          start_color();
+          init_pair(1, COLOR_WHITE, COLOR_BLACK);
+          init_pair(2, COLOR_YELLOW, COLOR_BLACK);
+          base_usleep /= 2;
+          if (WIND) {
+            WIND = 150;
+          }
+        } else {
+          TGV = 0;
+        }
     }
 
     for (x = COLS - 1; ; --x) {
@@ -277,7 +278,11 @@ int add_TGV(int x)
     static char *vagoon[TGVHEIGHT + 1]
         = {TGVVAG0, TGVVAG1, TGVVAG2, TGVVAG3, TGVVAG4, TGVVAG5, TGVVAG6, TGVVAG7, TGVDEL};
 
-    int y, i, dy = 0;
+    if (NUMBER < 0)
+        NUMBER = 1;
+
+    int y, i, j, dy = 0;
+    int TGVLENGTH = 54 + 57 * NUMBER;
 
     if (x < - TGVLENGTH)  return ERR;
     y = LINES / 2 - 5;
@@ -288,19 +293,22 @@ int add_TGV(int x)
     }
     attron(COLOR_PAIR(2));
     for (i = 0; i <= TGVHEIGHT; ++i) {
-        my_mvaddstr(y + i, x, tgv[((TGVLENGTH + x) / 2) % TGVPATTERNS][i]);
-        my_mvaddstr(y + i + dy, x + 55, vagoon[i]);
+        my_mvaddstr(y + i, x, tgv[(TGVLENGTH + x) % TGVPATTERNS][i]);
+        for (j = 1; j <= NUMBER; ++j)
+          my_mvaddstr(y + i + dy*j, x + 55*j, vagoon[i]);
     }
-    attroff(COLOR_PAIR(2));
 
     if (ACCIDENT == 1) {
         add_man(y + 2, x + 14);
-
-        add_man(y + dy + 3, x + 85);
-        add_man(y + dy + 3, x + 90);
-        add_man(y + dy + 3, x + 95);
-        add_man(y + dy + 3, x + 100);
+        for (j = 1; j <= NUMBER; ++j) {
+            add_man(y + dy*j + 3, x + 30 + 55*j);
+            add_man(y + dy*j + 3, x + 35 + 55*j);
+            add_man(y + dy*j + 3, x + 40 + 55*j);
+            add_man(y + dy*j + 3, x + 45 + 55*j);
+        }
     }
+    attroff(COLOR_PAIR(2));
+
     return OK;
 }
 
