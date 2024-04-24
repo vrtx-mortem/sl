@@ -169,3 +169,42 @@
 #define C51WH12 "------'|oOo|=[]=-      ||      ||      |  ||=======_|__ "
 #define C51WH13 "/~\\____|___|/~\\_|  O=======O=======O   |__|+-/~\\_|     "
 #define C51WH14 "\\_/         \\_/  \\____/  \\____/  \\____/      \\_/       "
+
+#define ARTILLERYHEIGHT	15
+#define ARTILLERYPATTERNS	2
+
+#define ARTILLERYLOC00  "                                                         "
+#define ARTILLERYLOC01  "                                                         "
+#define ARTILLERYLOC02  "                                                         "
+#define ARTILLERYLOC03  "                                                         "
+#define ARTILLERYLOC04  "                                                         "
+#define ARTILLERYLOC05  "                                                         "
+#define ARTILLERYLOC06  "                                                         "
+#define ARTILLERYLOC07  "                             ______________   /          "
+#define ARTILLERYLOC08  "                ____________/______________|__\\_______   "
+#define ARTILLERYLOC09  "          _____/  |IIIIIIIIIII|_______________________|  "
+#define ARTILLERYLOC10  "       __/__/_|_|       ______________________________|  "
+#define ARTILLERYLOC11  "    __/       | |      /         ||||||||||||SMYAKS|| |  "
+#define ARTILLERYLOC12  "   />  []     | |    /___________||||||||||||______|| |  "
+#define ARTILLERYLOC13  "  \\_==================================================|  "
+#define ARTILLERYWHL1  "    |___/==0==0==|_________________________/===0==0==\\|  "
+
+#define ARTILLERYWHL2  "    |___/0==0==0=|_________________________/=0==0==0=\\|  "
+
+#define ARTILLERYDEL   "                                                         "
+
+#define ARTILLERYWAG00 "                                            _____        "
+#define ARTILLERYWAG01 "                                           /++++/        "
+#define ARTILLERYWAG02 "                                          /====/         "
+#define ARTILLERYWAG03 "                                         /    /          "
+#define ARTILLERYWAG04 "                                        /    /           "
+#define ARTILLERYWAG05 "                                       /    /            "
+#define ARTILLERYWAG06 "  ______________________           ___/____/____         "
+#define ARTILLERYWAG07 " |      /  /  /  /  /  /|         /            \\         "
+#define ARTILLERYWAG08 " |     /  /  /  /  /  / |        /++++++++++++++\\        "
+#define ARTILLERYWAG09 " |    /  /  /  /  /  /  |  _____/________________\\____   "
+#define ARTILLERYWAG10 " |   /  /  /  /  /  /   | //      SMYAKO PUSHKA      \\\\  "
+#define ARTILLERYWAG11 " |__/__/__/__/__/__/____|//_+_+_+_+_+_+_+_+_+_+_+_+_+_\\\\ "
+#define ARTILLERYWAG12 " |_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_| "
+#define ARTILLERYWAG13 "   |_D__D__D_|  |_D__D__D_|  |_D__D__D_|  |_D__D__D_|   "
+#define ARTILLERYWAG14 "    \\_/   \\_/   \\_/   \\_/     \\_/    \\_/  \\_/   \\_/  "

@@ -62,6 +62,7 @@ void add_man(int y, int x);
 int add_C51(int x);
 int add_D51(int x);
 int add_TGV(int x);
+int add_artillery(int x);
 int add_sl(int x);
 void option(char *str);
 int my_mvaddstr(int y, int x, char *str);
@@ -75,6 +76,7 @@ int FLY       = 0;
 int LOGO      = 0;
 int WIND      = 0;
 int TGV       = 0;
+int ARTILLERY = 0;
 
 int DEFAULT_COLOR = -1;
 
@@ -101,6 +103,7 @@ void option(char *str)
             case 'F': FLY      = 1; break;
             case 'l': LOGO     = 1; break;
             case 'w': WIND     = 200; break;
+            case 's': ARTILLERY = 1; break;
             case 'v': 
               printf("Version: %s, last updated: 2024-04-24\n", VERSION);
               exit(0);
@@ -177,6 +180,9 @@ int main(int argc, char *argv[])
         }
         else if (TGV == 1) {
             if (add_TGV(x) == ERR) break;
+        }
+        else if (ARTILLERY == 1) {
+            if (add_artillery(x) == ERR) break;
         }
         else {
             if (add_D51(x) == ERR) break;
@@ -326,6 +332,98 @@ int add_TGV(int x)
 
     return OK;
 }
+
+int add_artillery(int x)
+{
+    static char *locomotive[ARTILLERYPATTERNS][ARTILLERYHEIGHT + 1] = {
+      {
+        ARTILLERYLOC00,
+        ARTILLERYLOC01,
+        ARTILLERYLOC02,
+        ARTILLERYLOC03,
+        ARTILLERYLOC04,
+        ARTILLERYLOC05,
+        ARTILLERYLOC06,
+        ARTILLERYLOC07,
+        ARTILLERYLOC08,
+        ARTILLERYLOC09,
+        ARTILLERYLOC10,
+        ARTILLERYLOC11,
+        ARTILLERYLOC12,
+        ARTILLERYLOC13,
+        ARTILLERYWHL1,
+        ARTILLERYDEL
+      },
+      {
+        ARTILLERYLOC00,
+        ARTILLERYLOC01,
+        ARTILLERYLOC02,
+        ARTILLERYLOC03,
+        ARTILLERYLOC04,
+        ARTILLERYLOC05,
+        ARTILLERYLOC06,
+        ARTILLERYLOC07,
+        ARTILLERYLOC08,
+        ARTILLERYLOC09,
+        ARTILLERYLOC10,
+        ARTILLERYLOC11,
+        ARTILLERYLOC12,
+        ARTILLERYLOC13,
+        ARTILLERYWHL2,
+        ARTILLERYDEL
+      }
+    };
+    static char *wagons[ARTILLERYHEIGHT + 1] = {
+      ARTILLERYWAG00,
+      ARTILLERYWAG01,
+      ARTILLERYWAG02,
+      ARTILLERYWAG03,
+      ARTILLERYWAG04,
+      ARTILLERYWAG05,
+      ARTILLERYWAG06,
+      ARTILLERYWAG07,
+      ARTILLERYWAG08,
+      ARTILLERYWAG09,
+      ARTILLERYWAG10,
+      ARTILLERYWAG11,
+      ARTILLERYWAG12,
+      ARTILLERYWAG13,
+      ARTILLERYWAG14,
+      ARTILLERYDEL
+    };
+
+    if (NUMBER < 0)
+        NUMBER = 1;
+
+    int y, i, j, dy = 0;
+    int ARTILLERYLENGTH = 54 + 57 * NUMBER;
+
+    if (x < - ARTILLERYLENGTH)  return ERR;
+    y = LINES / 2 - 5;
+
+    /*
+    if (FLY == 1) {
+        y = (x / 7) + LINES - (COLS / 7) - ARTILLERYHEIGHT;
+        dy = 1;
+    }
+    */
+    for (i = 0; i <= ARTILLERYHEIGHT; ++i) {
+        my_mvaddstr(y + i, x, locomotive[(ARTILLERYLENGTH + x) % ARTILLERYPATTERNS][i]);
+        for (j = 1; j <= NUMBER; ++j)
+          my_mvaddstr(y + i + dy*j, x + 55*j, wagons[i]);
+    }
+
+    if (ACCIDENT == 1) {
+        add_man(y + 9, x + 14);
+        for (j = 1; j <= NUMBER; ++j) {
+            add_man(y + dy*j + 6, x + 2 + 55*j);
+        }
+    }
+    attroff(COLOR_PAIR(2));
+
+    return OK;
+}
+
 
 int add_C51(int x)
 {
