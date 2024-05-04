@@ -203,7 +203,7 @@
 #define ARTILLERYWAG07 " |      /  /  /  /  /  /|         /            \\         "
 #define ARTILLERYWAG08 " |     /  /  /  /  /  / |        /++++++++++++++\\        "
 #define ARTILLERYWAG09 " |    /  /  /  /  /  /  |  _____/________________\\____   "
-#define ARTILLERYWAG10 " |   /  /  /  /  /  /   | //      SHMYAKO PUSHKA     \\\\  "
+#define ARTILLERYWAG10 " |   /  /  /  /  /  /   | //     SHMYAKSO PUSHKA     \\\\  "
 #define ARTILLERYWAG11 " |__/__/__/__/__/__/____|//_+_+_+_+_+_+_+_+_+_+_+_+_+_\\\\ "
 #define ARTILLERYWAG12 " |_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_| "
 #define ARTILLERYWAG13 "   |_D__D__D_|  |_D__D__D_|  |_D__D__D_|  |_D__D__D_|   "
