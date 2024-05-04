@@ -66,6 +66,7 @@ int add_artillery(int x);
 int add_sl(int x);
 void option(char *str);
 int my_mvaddstr(int y, int x, char *str);
+void disco_colors(int x);
 
 int ACCIDENT  = 0;
 int C51       = 0;
@@ -139,6 +140,13 @@ bool ncurses_prepare_colors(void)
   return true;
 }
 
+void disco_colors(int x)
+{
+  if (DISCO && (x + INT_MAX/2) % 4 == 2) {
+    attron(COLOR_PAIR((x + INT_MAX/2) / 16 % 4 + 1));
+  }
+}
+
 int main(int argc, char *argv[])
 {
   int x, i;
@@ -205,6 +213,14 @@ int main(int argc, char *argv[])
     refresh();
     usleep(base_usleep - (WIND * 100));
   }
+
+  if (DISCO == 1 && !TGV) {
+    attroff(COLOR_PAIR(1));
+    attroff(COLOR_PAIR(2));
+    attroff(COLOR_PAIR(3));
+    attroff(COLOR_PAIR(4));
+  }
+
   mvcur(0, COLS - 1, LINES - 1, 0);
   endwin();
 
@@ -265,6 +281,7 @@ int add_sl(int x)
     }
   }
   add_smoke(y - 1, x + LOGOFUNNEL);
+  disco_colors(x + LOGOFUNNEL);
   return OK;
 }
 
@@ -312,6 +329,7 @@ int add_D51(int x)
     add_man(y + 2, x + 47);
   }
   add_smoke(y - 1, x + D51FUNNEL);
+  disco_colors(x + D51FUNNEL);
   return OK;
 }
 
@@ -403,6 +421,7 @@ int add_artillery(int x)
     }
   }
 
+  disco_colors(x);
   return OK;
 }
 
@@ -450,6 +469,7 @@ int add_C51(int x)
     add_man(y + 3, x + 49);
   }
   add_smoke(y - 1, x + C51FUNNEL);
+  disco_colors(x + C51FUNNEL);
   return OK;
 }
 
@@ -497,9 +517,6 @@ void add_smoke(int y, int x)
   static int dx[SMOKEPTNS] = {-2, -1, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3};
   int i;
 
-  if (DISCO && (x + INT_MAX/2) % 4 == 2) {
-    attron(COLOR_PAIR((x + INT_MAX/2) / 16 % 4 + 1));
-  }
   if (x % 4 == 0) {
     for (i = 0; i < sum; ++i) {
       my_mvaddstr(S[i].y, S[i].x, Eraser[S[i].ptrn]);
