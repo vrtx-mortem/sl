@@ -405,7 +405,7 @@ int add_artillery(int x)
   if (x < - ARTILLERYLENGTH) {
     return ERR;
   }
-  y = LINES / 2 - 5;
+  y = LINES / 2 - 12;
 
   for (i = 0; i <= ARTILLERYHEIGHT; ++i) {
     my_mvaddstr(y + i, x, locomotive[(ARTILLERYLENGTH + x) % ARTILLERYPATTERNS][i]);
