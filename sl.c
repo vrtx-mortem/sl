@@ -1,52 +1,3 @@
-/*========================================
- *    sl.c: SL version 5.05
- *        Copyright 1993,1998,2014-2015,2019
- *                  Toyoda Masashi
- *                  (mtoyoda@acm.org)
- *        Last Modified: 2019/03/19
- *========================================
- */
-/* sl version 5.05 : by eyJhb 2019-08-14
- * - Merged pull request from cosmo-ray adding orange TGV (-G)
- * sl version 5.04 : by eyJhb 2019-03-19
- * - Merged pull request from EverNine allowing to specify the number of cars
- * - Merged pull request from ddugovic which adds
- *      `-e` for `ctrl+c` to work
- *      `-d` to enable disco mode
- *      `-w` making the locomotive go faster
- */
-/* sl version 5.03 : Fix some more compiler warnings.                        */
-/*                                              by Ryan Jacobs    2015/01/19 */
-/* sl version 5.02 : Fix compiler warnings.                                  */
-/*                                              by Jeff Schwab    2014/06/03 */
-/* sl version 5.01 : removed cursor and handling of IO                       */
-/*                                              by Chris Seymour  2014/01/03 */
-/* sl version 5.00 : add -c option                                           */
-/*                                              by Toyoda Masashi 2013/05/05 */
-/* sl version 4.00 : add C51, usleep(40000)                                  */
-/*                                              by Toyoda Masashi 2002/12/31 */
-/* sl version 3.03 : add usleep(20000)                                       */
-/*                                              by Toyoda Masashi 1998/07/22 */
-/* sl version 3.02 : D51 flies! Change options.                              */
-/*                                              by Toyoda Masashi 1993/01/19 */
-/* sl version 3.01 : Wheel turns smoother                                    */
-/*                                              by Toyoda Masashi 1992/12/25 */
-/* sl version 3.00 : Add d(D51) option                                       */
-/*                                              by Toyoda Masashi 1992/12/24 */
-/* sl version 2.02 : Bug fixed.(dust remains in screen)                      */
-/*                                              by Toyoda Masashi 1992/12/17 */
-/* sl version 2.01 : Smoke run and disappear.                                */
-/*                   Change '-a' to accident option.                         */
-/*                                              by Toyoda Masashi 1992/12/16 */
-/* sl version 2.00 : Add a(all),l(long),F(Fly!) options.                     */
-/*                                              by Toyoda Masashi 1992/12/15 */
-/* sl version 1.02 : Add turning wheel.                                      */
-/*                                              by Toyoda Masashi 1992/12/14 */
-/* sl version 1.01 : Add more complex smoke.                                 */
-/*                                              by Toyoda Masashi 1992/12/14 */
-/* sl version 1.00 : SL runs vomiting out smoke.                             */
-/*                                              by Toyoda Masashi 1992/12/11 */
-
 #include <ctype.h>
 #include <curses.h>
 #include <limits.h>
@@ -112,7 +63,7 @@ void option(char *str)
       case 'w': WIND      = 200; break;
       case 's': ARTILLERY = 1 ;  break;
       case 'v':
-        printf("Version: %s, last updated: 2024-04-24\n", VERSION);
+        puts("Version: " VERSION);
         exit(0);
         break;
       default:
