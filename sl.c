@@ -172,7 +172,7 @@ int main(int argc, char *argv[])
     attroff(COLOR_PAIR(4));
   }
 
-  mvcur(0, COLS - 1, LINES - 1, 0);
+  clear();
   endwin();
 
   return(EXIT_FAILURE);
