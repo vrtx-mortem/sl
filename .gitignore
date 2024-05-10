@@ -1,1 +1,4 @@
-/sl
+*.o
+sl
+sl.h
+.gdb_history

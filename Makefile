@@ -5,14 +5,19 @@ MANDIR ?= $(PREFIX)/share/man
 CC      ?= clang
 CFLAGS  ?= -O3 -Wall
 LDFLAGS ?= -lncurses
+STRIP   ?= strip
 
 SRC := $(wildcard *.c)
 BIN := $(SRC:%.c=%)
 
-all: $(BIN)
+all: sl.h $(BIN)
+
+sl.h:
+	sed -e 's/\\/\\\\/g' sl.def.h > $@
 
 %: %.c
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $<
+	$(STRIP) $@
 
 .PHONY: install
 
@@ -25,7 +30,7 @@ install: all
 .PHONY: clean
 
 clean:
-	rm -rf $(BIN)
+	rm -rf $(BIN) sl.h
 
 .PHONY: distclean
 
