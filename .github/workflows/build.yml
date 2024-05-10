@@ -16,5 +16,6 @@ jobs:
     - name: make
       run: make clean all
       env:
-        LDFLAGS: -lncurses
+        LDFLAGS: -lncurses -Wl,-O1 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,-z,pack-relative-relocs
+        CFLAGS: -march=x86-64 -mtune=generic -O2 -pipe -fno-plt -fexceptions -Wp,-D_FORTIFY_SOURCE=3 -Wformat -Werror=format-security -fstack-clash-protection -fcf-protection -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer
         CC: clang
